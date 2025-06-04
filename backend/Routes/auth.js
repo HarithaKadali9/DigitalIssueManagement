@@ -23,9 +23,11 @@ router.post('/signup', async (req, res)=>{
             sameSite: "lax",
             expires: new Date(Date.now()+7*24*60*60*1000), // 7 days
         })
-        res.send("Data added successfully into NormalUser collection");
+        res.status(200).json({ message: "Data added successfully into NormalUser collection" });
+
     }catch(err){
-        res.status(400).send("ERROR : "+err.message);
+        res.status(400).json({ message: "ERROR: " + err.message });
+
     }
 })
 

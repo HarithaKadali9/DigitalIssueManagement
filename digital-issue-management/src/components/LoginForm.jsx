@@ -1,27 +1,44 @@
 import React, { useState } from 'react'
 
 const LoginForm = () => {
-  const [email, setEmail]=useState('');
+  const [emailid, setEmailId]=useState('');
   const [password, setPassword]=useState('');
-  
-  const handleEmailChange=(e)=>{
-    setEmail(e.target.value);
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    try{
+      const data=await fetch("http://localhost:4000/login", {
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          emailid, password
+        }),
+        
+      });
+      console.log("Login Successfull");
+      alert("Login successfully");
+    }catch(err){
+      console.log("login fail: "+err.message)
+      alert("Login Fail");
+    }
   }
-  const handlePasswordChange=(e)=>{
-    setPassword(e.target.value);
+  const handleChange=(setter)=>(e)=>{
+    setter(e.target.value);
   }
-  
+
   return (
     <div>
       <h1>Login Form</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
             <label htmlFor='email'>Enter Email: </label>
             <input
                 type='email'
                 id='email'
-                value={email}
+                value={emailid}
                 placeholder='enter a valid email'
-                onChange={handleEmailChange}
+                onChange={handleChange(setEmailId)}
             /><br/>
             <label htmlFor='password'>Enter Password: </label>
             <input
@@ -29,11 +46,10 @@ const LoginForm = () => {
                 id='password'
                 value={password}
                 placeholder='enter a valid password'
-                onChange={handlePasswordChange}
+                onChange={handleChange(setPassword)}
             /><br/>
+            <button type='submit'>Submit</button>
       </form>
-      <p>Email: {email}</p>
-      <p>Password: {password}</p>
     </div>
   )
 }

@@ -1,13 +1,20 @@
 const express=require('express')
 const cors=require("cors")
-const router=require('./Routes/auth');
 const ConnectDataBase=require('./config/database');
 
 const app=express();
-
+app.use(cors({
+    origin: ["http://localhost:5173"],
+    credentials: true,
+}))
 app.use(express.json())
 
+const router=require('./Routes/auth');
+const complaintRouter=require("./Routes/complaint");
+
 app.use("/", router)
+app.use("/", complaintRouter);
+
 ConnectDataBase()
     .then(()=>{
         app.listen(4000, ()=>{

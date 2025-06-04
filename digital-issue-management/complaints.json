@@ -1,0 +1,52 @@
+[
+  {
+    "complaintName": "Pothole on Main Street",
+    "complaintType": "Road Issue",
+    "complaintIssue": "A large pothole near the post office on Main Street is causing accidents and damaging vehicles."
+  },
+  {
+    "complaintName": "Street Light Not Working",
+    "complaintType": "Electricity Issue",
+    "complaintIssue": "The street light in front of House No. 25, Green Avenue, has been out for two weeks."
+  },
+  {
+    "complaintName": "Garbage Not Collected",
+    "complaintType": "Sanitation",
+    "complaintIssue": "Garbage collection has not been done in Shanti Nagar for the past 4 days, leading to foul smell."
+  },
+  {
+    "complaintName": "Overflowing Drainage",
+    "complaintType": "Sewage",
+    "complaintIssue": "Drainage water is overflowing onto the road near Gandhi Park, making it unhygienic and unsafe."
+  },
+  {
+    "complaintName": "Water Supply Disruption",
+    "complaintType": "Water Supply",
+    "complaintIssue": "No water supply in the Sai Colony area since yesterday morning without prior notice."
+  },
+  {
+    "complaintName": "Open Manhole",
+    "complaintType": "Safety Hazard",
+    "complaintIssue": "An open manhole on 2nd Cross Road is a danger to pedestrians and vehicles, especially at night."
+  },
+  {
+    "complaintName": "Illegal Parking",
+    "complaintType": "Traffic Violation",
+    "complaintIssue": "Vehicles are being parked illegally on the footpath near City Mall, obstructing pedestrian movement."
+  },
+  {
+    "complaintName": "Stray Dog Menace",
+    "complaintType": "Animal Control",
+    "complaintIssue": "A pack of stray dogs in Sector 8 is chasing children and creating panic among residents."
+  },
+  {
+    "complaintName": "Broken Footpath",
+    "complaintType": "Public Infrastructure",
+    "complaintIssue": "The footpath tiles near Sunrise Hospital are broken, causing difficulty for elderly people to walk."
+  },
+  {
+    "complaintName": "Noise Pollution from Construction",
+    "complaintType": "Environmental",
+    "complaintIssue": "Loud noise from a construction site near Lakshmi Apartment is disturbing residents even during night hours."
+  }
+]

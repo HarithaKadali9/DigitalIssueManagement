@@ -20,7 +20,7 @@ const FileComplaintSchema=new mongoose.Schema(
             type: String,
             required: true,
             minLength: 10,
-            maxLength: 50,
+            maxLength: 150,
         },
     },
     {

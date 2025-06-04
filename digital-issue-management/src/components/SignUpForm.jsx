@@ -1,50 +1,39 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
-  const [firstname, setFirstName]=useState('');
-  const [lastname, setLastName]=useState('');
-  const [email, setEmail]=useState('');
+  const [firstName, setFirstName]=useState('');
+  const [lastName, setLastName]=useState('');
+  const [emailid, setEmail]=useState('');
   const [password, setPassword]=useState('');
   const [confirmpassword, setConfirmPassword]=useState('');
   const [phoneNumber, setPhoneNumber]=useState('');
+
+  const navigate=useNavigate();
   const handleSubmit= async(e)=>{
       e.preventDefault();
       try{
-        const formData=await fetch("http://localhost:5000/form",{
+        const formData=await fetch("http://localhost:4000/signup",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include", 
           body: JSON.stringify({
-            firstname,
-            lastname, email, password, phoneNumber
+            firstName,
+            lastName, emailid, password, phoneNumber
           }),
         });
         const data=await formData.json();
         alert(data.message || "Form Submitted successfully");
       }catch(err){
-        console.log("Submission error: ", err);
-        alert("Failed to submit form");
+        console.log("Submission error: "+err.message);
+        
       }
   }
 
-  const handleFNameChange=(e)=>{
-    setFirstName(e.target.value);
-  }
-  const handleLNameChange=(e)=>{
-    setLastName(e.target.value);
-  }
-  const handleEmailChange=(e)=>{
-    setEmail(e.target.value);
-  }
-  const handlePasswordChange=(e)=>{
-    setPassword(e.target.value);
-  }
-  const handleConfirmPasswordChange=(e)=>{
-    setConfirmPassword(e.target.value);
-  }
-  const handlePhoneNumberChange=(e)=>{
-    setPhoneNumber(e.target.value);
+  const handleChange=(setter)=>(e)=>{
+    setter(e.target.value);
   }
 
   return (
@@ -55,36 +44,36 @@ const SignUpForm = () => {
             <input
                 type='text'
                 id='fname'
-                value={firstname}
+                value={firstName}
                 placeholder='enter your name'
-                onChange={handleFNameChange}
+                onChange={handleChange(setFirstName)}
             /><br/><br/>
 
             <label htmlFor='lname'>Enter LastName: </label>
             <input
                 type='text'
                 id='lname'
-                value={lastname}
+                value={lastName}
                 placeholder='enter last name'
-                onChange={handleLNameChange}
+                onChange={handleChange(setLastName)}
             /><br/><br/>
 
             <label htmlFor='email'>Enter Email: </label>
             <input
                 type='email'
                 id='email'
-                value={email}
+                value={emailid}
                 placeholder='enter a valid email'
-                onChange={handleEmailChange}
+                onChange={handleChange(setEmail)}
             /><br/><br/>
 
             <label htmlFor='phone'>Enter Phone Number: </label>
             <input
-                type='text'
+                type='tel'
                 id='phone'
                 value={phoneNumber}
                 placeholder='enter a valid mobile number'
-                onChange={handlePhoneNumberChange}
+                onChange={handleChange(setPhoneNumber)}
             /><br/><br/>
 
             <label htmlFor='password'>Enter Password: </label>
@@ -93,22 +82,21 @@ const SignUpForm = () => {
                 id='password'
                 value={password}
                 placeholder='enter a valid password'
-                onChange={handlePasswordChange}
+                onChange={handleChange(setPassword)}
             /><br/><br/>
 
-            <label htmlFor='confrimpassword'>Confirm Password: </label>
+            <label htmlFor='confirmpassword'>Enter Confirm Password: </label>
             <input
                 type='password'
                 id='confirmpassword'
                 value={confirmpassword}
-                placeholder='retype password'
-                onChange={handleConfirmPasswordChange}
+                placeholder='enter a valid password'
+                onChange={handleChange(setConfirmPassword)}
             /><br/><br/>
+            
             <button type="submit">Submit</button>
+            <button onClick={()=>navigate("/")}>Already signed in</button>
       </form>
-      <p>Email: {email}</p>
-      <p>Phone Number: {phoneNumber}</p>
-      <p>Password: {password}</p>
     </div>
   )
 }
